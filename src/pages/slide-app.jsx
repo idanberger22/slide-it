@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 import { BOARD_SIZE, GRID_SIZE, TILE_COUNT } from "../constants"
-import { shuffle, canSwap, swap, isSolved, updateURLparams } from "../slide-service"
+import { shuffle, canSwap, swap, isSolved } from "../slide-service"
 import { Tile } from "../cmps/tile"
 import Confetti from 'react-confetti'
-
 
 export function SlideApp() {
     const [imgURL, setImgURL] = useState('')
@@ -49,6 +48,12 @@ export function SlideApp() {
 
     const handleImgChange = (e) => {
         setImgURL(e.target.value)
+        setIsStarted(false)
+        setTiles([...Array(TILE_COUNT).keys()])
+    }
+
+    const clearImg = () => {
+        setImgURL('')
     }
 
     return (<>
@@ -70,9 +75,10 @@ export function SlideApp() {
                 />
             ))}
         </ul>
-        {!isStarted && <button className="center" onClick={handleStart}>START GAME</button>}
-        {isStarted && <button className="center" style={{ background: 'beige' }} onClick={shuffleTiles}>RESET BOARD</button>}
-        <input value={imgURL} onChange={handleImgChange} />
+        {!isStarted && <button className="center start" onClick={handleStart}>START GAME</button>}
+        {isStarted && <button className="center start" style={{ background: 'beige' }} onClick={shuffleTiles}>RESET BOARD</button>}
+        <input value={imgURL} onChange={handleImgChange} placeholder='Square image URL' className="center img-input" />
+        <button onClick={clearImg} className='center'>CLEAR IMAGE</button>
     </>
     )
 }
