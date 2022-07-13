@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react"
 import { BOARD_SIZE, GRID_SIZE, TILE_COUNT } from "../constants"
-import { shuffle, canSwap, swap, isSolved } from "../slide-service"
+import { shuffle, canSwap, swap, isSolved, updateURLparams } from "../slide-service"
 import { Tile } from "../cmps/tile"
 import Confetti from 'react-confetti'
 
+
 export function SlideApp() {
+    const [imgURL, setImgURL] = useState('')
     const [tiles, setTiles] = useState([...Array(TILE_COUNT).keys()])
     const [isStarted, setIsStarted] = useState(false)
-    const [isWon,setIsWon] = useState(false)
+    const [isWon, setIsWon] = useState(false)
 
     const pieceHeight = Math.round(BOARD_SIZE / GRID_SIZE)
     const pieceWidth = Math.round(BOARD_SIZE / GRID_SIZE)
@@ -17,23 +19,19 @@ export function SlideApp() {
     }
 
     useEffect(() => {
-        if (isStarted && isSolved(tiles)){
+        if (isStarted && isSolved(tiles)) {
             setIsStarted(false)
             setIsWon(true)
             removeConfetti()
-        } 
+        }
     }, [tiles])
 
     const shuffleTiles = () => {
         setTiles(shuffle(tiles))
     }
 
-    const win = ()=>{
-        setTiles([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
-    }
-
     const swapTiles = (tileIndex) => {
-        if(!isStarted) return
+        if (!isStarted) return
         if (canSwap(tileIndex, tiles.indexOf(tiles.length - 1))) {
             const swapped = swap(tiles, tileIndex, tiles.indexOf(tiles.length - 1))
             setTiles(swapped)
@@ -45,22 +43,27 @@ export function SlideApp() {
         setIsStarted(true)
     }
 
-    const removeConfetti=()=>{
-        setTimeout(setIsWon,5000,false)
+    const removeConfetti = () => {
+        setTimeout(setIsWon, 5000, false)
+    }
+
+    const handleImgChange = (e) => {
+        setImgURL(e.target.value)
     }
 
     return (<>
-    {isWon && <Confetti
-      width={window.clientWidth}
-      height={window.clientHeight}
-    />}
-    
+        {isWon && <Confetti
+            width={window.clientWidth}
+            height={window.clientHeight}
+        />}
+
         <ul style={style} className="board">
             {tiles.map((tile, index) => (
                 <Tile
                     key={tile}
                     index={index}
                     tile={tile}
+                    imgURL={imgURL}
                     width={pieceWidth}
                     height={pieceHeight}
                     handleTileClick={swapTiles}
@@ -68,8 +71,8 @@ export function SlideApp() {
             ))}
         </ul>
         {!isStarted && <button className="center" onClick={handleStart}>START GAME</button>}
-        {isStarted && <button className="center" style={{background:'beige'}} onClick={shuffleTiles}>RESET BOARD</button>}
-        {/* <button onClick={win}>win</button> */}
+        {isStarted && <button className="center" style={{ background: 'beige' }} onClick={shuffleTiles}>RESET BOARD</button>}
+        <input value={imgURL} onChange={handleImgChange} />
     </>
     )
 }
