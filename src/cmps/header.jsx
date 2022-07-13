@@ -1,6 +1,6 @@
 export function Header() {
 
     return (
-            <div className="center bar">Slide it</div>
+            <div className="center bar">SLIDE IT</div>
     )
 }

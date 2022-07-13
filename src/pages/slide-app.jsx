@@ -69,7 +69,7 @@ export function SlideApp() {
         </ul>
         {!isStarted && <button className="center" onClick={handleStart}>START GAME</button>}
         {isStarted && <button className="center" style={{background:'beige'}} onClick={shuffleTiles}>RESET BOARD</button>}
-        <button onClick={win}>win</button>
+        {/* <button onClick={win}>win</button> */}
     </>
     )
 }

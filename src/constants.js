@@ -1,3 +1,3 @@
-export const TILE_COUNT = 16
 export const GRID_SIZE = 4
-export const BOARD_SIZE = 400
+export const TILE_COUNT = GRID_SIZE*GRID_SIZE
+export let BOARD_SIZE = document.body.clientWidth > 480 ? 450 : 350
