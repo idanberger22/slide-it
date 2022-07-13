@@ -42,8 +42,7 @@ body{
     place-items: center;
     font-size: 2rem;
     outline: 1px solid black;
-    transition: 0.25s;
-    transition: right 2s left 2s;
+    transition: transform 0.25s ease
 }
 
 .hole{

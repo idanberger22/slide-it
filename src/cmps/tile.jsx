@@ -10,7 +10,7 @@ export function Tile(props) {
       style={{
         width: `calc(100%/${GRID_SIZE})`,
         height: `calc(100%/${GRID_SIZE})`,
-        transform: `translate3d(${visualPos.x}px, ${visualPos.y}px, 0)`,
+        transform: `translate(${visualPos.x}px, ${visualPos.y}px)`,
         opacity: tile === TILE_COUNT - 1 ? 0 : 1
       }}
       className="tile"
