@@ -28,7 +28,7 @@ body{
 }
 
 .board{
-    margin: 150px auto;
+    margin: 100px auto;
     position: relative;
     padding: 0;
     background-color: rgb(31, 31, 31);
@@ -52,8 +52,8 @@ body{
 
 button{
     display: block;
-    padding: 4px;
+    padding: 10px;
     font-size: x-large;
-    background-color: beige;
-
+    background-color: rgb(38, 208, 60);
+    border-radius: 5PX;
 }
