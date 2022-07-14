@@ -59,24 +59,6 @@ export function swap(tiles, src, dest) {
     return tilesResult;
   }
 
-export function updateURLparams (url, param, paramVal){
-    let newAdditionalURL = ''
-    let tempArray = url.split('?')
-    let baseURL = tempArray[0]
-    let additionalURL = tempArray[1]
-    let temp = ''
-    if(additionalURL){
-        for(let i=0;i<tempArray.length;i++){
-            if(tempArray[i].split('=')[0]!== param) {
-                newAdditionalURL += temp+tempArray[i]
-                temp= '&'
-            }
-        }
-    }
-    var rows_txt = temp + "" + param + "=" + paramVal;
-    return baseURL + "?" + newAdditionalURL + rows_txt;
-}
-
 
 
 
