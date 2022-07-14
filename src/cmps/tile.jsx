@@ -20,7 +20,7 @@ export function Tile(props) {
             backgroundPosition: `${(100 / (GRID_SIZE - 1)) * (tile % GRID_SIZE)}% ${(100 / (GRID_SIZE - 1)) * (Math.floor(tile / GRID_SIZE))}%`,
             opacity: tile === TILE_COUNT - 1 ? 0 : 1,
           }}
-          className="tile"
+          className="tile noselect"
           onClick={() => handleTileClick(index)}
         >
           {!imgURL && `${tile + 1}`}
