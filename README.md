@@ -3,8 +3,10 @@
   If you are a hard-core fan, you can also copy an image URL and arrange the tiles to match the image.  
   Click on a tile near the empty spot to move it there.  
   
+  
   # Installation  
   clone the repository > npm i > npm start > enjoy!  
+  Or you can check the live version here : https://idanberger22.github.io/slide-it/
   
   
 
